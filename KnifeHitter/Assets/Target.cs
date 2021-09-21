@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+using DG.Tweening;
 public class Target : MonoBehaviour
 {
     [SerializeField] private Transform _transform;
@@ -28,20 +28,23 @@ public class Target : MonoBehaviour
 
         SpawnEnemyKnives(GameManager.Instance.EnemyKnivesCount);
         SpawnAplle();
+        Rotate();
+
     }
 
     private void Update()
     {
-        Rotate();
     }
 
     private void Rotate()
     {
-        _transform.Rotate(0, 0, _speed * Time.deltaTime);
+        //_transform.Rotate(0, 0, _speed * Time.deltaTime);
+        Tween tween = _transform.DORotate(new Vector3(0, 0, _speed),10,RotateMode.WorldAxisAdd).SetLoops(10,LoopType.Yoyo).SetDelay(1f);
     }
 
     private void Explode()
     {
+        DOTween.Clear();
         Instantiate(_explodeEffect, gameObject.transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

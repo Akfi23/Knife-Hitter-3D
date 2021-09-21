@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transform: {fileID: 0}
-  _speed: 150
+  _speed: 800
   _explodeEffect: {fileID: 6768910568074029786, guid: 9edaa8b32f907984c896dba5a375b677, type: 3}
   _health: 0
   _sphereCollider: {fileID: 0}
