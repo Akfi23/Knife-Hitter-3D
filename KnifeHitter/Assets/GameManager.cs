@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        UIManager.Instance.OpenGame();
         StartCoroutine(InstantiateTarget());
     }
 
@@ -53,11 +52,11 @@ public class GameManager : MonoBehaviour
 
     IEnumerator InstantiateTarget() 
     {
+        yield return new WaitForSeconds(1f);
+
         ScoreToWin = Random.Range(3, 9);
         EnemyKnivesCount = Random.Range(1, 3);
         NewTargetSpawned?.Invoke(ScoreToWin);
-
-        yield return new WaitForSeconds(1f);
 
         Instantiate(_targetPrefab, new Vector3(0, 0.2f, 2.5f),Quaternion.Euler(180,0,0));
 
@@ -82,7 +81,6 @@ public class GameManager : MonoBehaviour
     IEnumerator StopSession() 
     {
         yield return new WaitForSeconds(1f);
-        UIManager.Instance.OpenLoseWindow();
         Time.timeScale = 0;
     }
 }

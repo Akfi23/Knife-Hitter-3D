@@ -51,11 +51,7 @@ public class GameWindow : Window
     {
         DeactivateIcons();
 
-        for (int i = 0; i < count; i++)
-        {
-            _knifeIcons[i].color = Color.white;
-            _knifeIcons[i].gameObject.SetActive(true);
-        }      
+        ActivateIcons(count);
     }
 
     private void CollorIfHit()
@@ -79,6 +75,15 @@ public class GameWindow : Window
         foreach (var icon in _knifeIcons)
         {
             icon.gameObject.SetActive(false);
+        }
+    }
+
+    private void ActivateIcons(int count) 
+    {
+        for (int i = 0; i < count; i++)
+        {
+            _knifeIcons[i].color = Color.white;
+            _knifeIcons[i].gameObject.SetActive(true);
         }
     }
 }
