@@ -4,25 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    private static GameManager _gameManager;
-    public static GameManager Instance
-    {
-        get
-        {
-            if (_gameManager == null)
-            {
-                _gameManager = FindObjectOfType<GameManager>();
-            }
-            return _gameManager;
-        }
-    }
-
     [SerializeField] private GameObject _targetPrefab;
     [SerializeField] private UIManager uiManager;
+    [SerializeField] private LoseWIndow loseWindow; 
 
-    private bool isGameEnded=false;
     private int currentHits;
 
     public int EnemyKnivesCount { get; private set; }
@@ -53,12 +40,12 @@ public class GameManager : MonoBehaviour
         Debug.Log(Time.timeScale);
     }
 
-    IEnumerator InstantiateTarget() 
+    public IEnumerator InstantiateTarget() 
     {
         yield return new WaitForSeconds(1f);
 
         ScoreToWin = Random.Range(3, 9);
-        EnemyKnivesCount = Random.Range(1, 3);
+        EnemyKnivesCount = Random.Range(1, 4);
         NewTargetSpawned?.Invoke(ScoreToWin);
         Instantiate(_targetPrefab, new Vector3(0, 0.2f, 2.5f),Quaternion.Euler(180,0,0));
 
@@ -76,7 +63,6 @@ public class GameManager : MonoBehaviour
 
     private void EndGame(bool gameStatus) 
     {
-        isGameEnded = gameStatus;
         StartCoroutine(StopSession());
     }
 
@@ -86,5 +72,9 @@ public class GameManager : MonoBehaviour
         uiManager.SwitchWindows(WindowType.LoseWindow);
     }
 
+    public void InstantiateOnReaload() 
+    {
+        StartCoroutine(InstantiateTarget());
+    }
     
 }

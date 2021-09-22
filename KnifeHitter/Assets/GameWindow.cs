@@ -88,5 +88,4 @@ public class GameWindow : Window
             _knifeIcons[i].gameObject.SetActive(true);
         }
     }
-    
 }

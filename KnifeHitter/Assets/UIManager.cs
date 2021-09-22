@@ -17,13 +17,11 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private List<Window> uiWindows;
     [SerializeField] private Window lastActiveWindow;
 
-    protected override void Awake()
-    {
-        base.Awake();
-
+    private void Awake()
+    {        
         uiWindows = GetComponentsInChildren<Window>().ToList();
         uiWindows.ForEach(w => w.gameObject.SetActive(false));
-        SwitchWindows(WindowType.MainMenuWindow);
+        SwitchWindows(WindowType.GameWindow);
     }
 
     public void SwitchWindows(WindowType type) 

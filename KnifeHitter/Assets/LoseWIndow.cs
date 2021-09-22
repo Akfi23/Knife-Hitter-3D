@@ -8,7 +8,6 @@ public class LoseWIndow : Window
 {
     [SerializeField] private Button _restartButton;
     [SerializeField] private Text _recordText;
-
     private void Start()
     {
         _recordText.text = " Best Record: " + ScoreCounter.Instance.RecordLvl.ToString();
@@ -18,5 +17,5 @@ public class LoseWIndow : Window
     {
         uiManager.SwitchWindows(WindowType.GameWindow);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }    
+    }
 }

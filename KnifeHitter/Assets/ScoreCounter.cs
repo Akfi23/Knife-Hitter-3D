@@ -3,21 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ScoreCounter : MonoBehaviour
+public class ScoreCounter : Singleton<ScoreCounter>
 {
-    private static ScoreCounter _scoreCounter;
-    public static ScoreCounter Instance
-    {
-        get
-        {
-            if (_scoreCounter == null)
-            {
-                _scoreCounter = FindObjectOfType<ScoreCounter>();
-            }
-            return _scoreCounter;
-        }
-    }
-
     private int currentScore;
     public int AppleHits { get; private set; }
     public int RecordLvl { get; private set; }
