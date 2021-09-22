@@ -27,7 +27,7 @@ public class Target : MonoBehaviour
         _sphereCollider = GetComponent<SphereCollider>();
 
         SpawnEnemyKnives(GameManager.Instance.EnemyKnivesCount);
-        SpawnAplle();
+        SpawnAplle(GameManager.Instance.isSpawned);
         Rotate();
 
     }
@@ -69,10 +69,14 @@ public class Target : MonoBehaviour
         }
     }
 
-    private void SpawnAplle() 
+    private void SpawnAplle(bool status) 
     {
+        if (status == true) 
+        {
         Transform apple= Instantiate(_applePrefab,_transform);
-        SetPositionAndRotation(apple);
+        SetPositionAndRotation(apple);       
+        }
+
     }
     
     private void SetPositionAndRotation(Transform prefab,float angle,int offset) 

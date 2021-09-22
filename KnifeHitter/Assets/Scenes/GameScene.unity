@@ -575,6 +575,7 @@ MonoBehaviour:
   _targetPrefab: {fileID: 6728333156633798294, guid: 09d251765a1b73346a109c0f2aad7d2c, type: 3}
   uiManager: {fileID: 0}
   loseWindow: {fileID: 0}
+  data: {fileID: 11400000, guid: 497851eb941027946ab347f43c366651, type: 2}
 --- !u!4 &495054507
 Transform:
   m_ObjectHideFlags: 0

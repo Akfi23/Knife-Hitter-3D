@@ -8,10 +8,12 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private GameObject _targetPrefab;
     [SerializeField] private UIManager uiManager;
-    [SerializeField] private LoseWIndow loseWindow; 
+    [SerializeField] private LoseWIndow loseWindow;
+    [SerializeField] private ChanceData data;
+
+    public bool isSpawned { get; private set; }
 
     private int currentHits;
-
     public int EnemyKnivesCount { get; private set; }
     public int ScoreToWin { get; private set; }
 
@@ -47,6 +49,7 @@ public class GameManager : Singleton<GameManager>
         ScoreToWin = Random.Range(3, 9);
         EnemyKnivesCount = Random.Range(1, 4);
         NewTargetSpawned?.Invoke(ScoreToWin);
+        isSpawned = data.GetChance();
         Instantiate(_targetPrefab, new Vector3(0, 0.2f, 2.5f),Quaternion.Euler(180,0,0));
 
         currentHits = 0;
