@@ -36,7 +36,6 @@ public abstract class Knife : MonoBehaviour
         {
             _isKnifeHitted = true;
 
-            collision.gameObject.GetComponent<Rigidbody>().isKinematic = false;
             _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, -2, _rigidbody.velocity.z);
 
             KnifeHitted?.Invoke(_isKnifeHitted);

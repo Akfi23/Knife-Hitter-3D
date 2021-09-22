@@ -11,7 +11,6 @@ public class Thrower : MonoBehaviour
     [SerializeField] private float _force;
     [SerializeField] private GameObject _aimCursor;
     [SerializeField] private float _ThrowDelay;
-
     private float _currentTimer = 0;
 
     public event UnityAction<int> KnifesStartCount;
@@ -25,7 +24,7 @@ public class Thrower : MonoBehaviour
     {
         GameManager.Instance.NewTargetSpawned -= InitializeKnifes;
     }
-
+    
     private void Start()
     {
         InitializeKnifes(GameManager.Instance.ScoreToWin);

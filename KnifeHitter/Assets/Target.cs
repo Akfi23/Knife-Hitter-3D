@@ -38,7 +38,6 @@ public class Target : MonoBehaviour
 
     private void Rotate()
     {
-        //_transform.Rotate(0, 0, _speed * Time.deltaTime);
         Tween tween = _transform.DORotate(new Vector3(0, 0, _speed),10,RotateMode.WorldAxisAdd).SetLoops(10,LoopType.Yoyo).SetDelay(1f);
     }
 

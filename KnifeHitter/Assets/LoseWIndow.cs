@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class LoseWIndow : Window
 {
     [SerializeField] private Button _restartButton;
-    [SerializeField] private Button _menuButton;
     [SerializeField] private Text _recordText;
 
     private void Start()
@@ -17,8 +16,7 @@ public class LoseWIndow : Window
 
     public void Restart() 
     {
+        uiManager.SwitchWindows(WindowType.GameWindow);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    
+    }    
 }

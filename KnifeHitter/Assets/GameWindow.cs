@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 
@@ -10,7 +11,6 @@ public class GameWindow : Window
     [SerializeField] private Image _knifeImage;
     [SerializeField] private CanvasGroup _knifePanel;
     [SerializeField] private List<Image> _knifeIcons=new List<Image>();
-
     [SerializeField] private Text _appleHitsText;
 
     private void OnEnable()
@@ -33,6 +33,8 @@ public class GameWindow : Window
 
     private void Awake()
     {
+        base.Awake();
+
         InitializeIcons();
         FormKnifePanel(GameManager.Instance.ScoreToWin);
     }
@@ -86,4 +88,5 @@ public class GameWindow : Window
             _knifeIcons[i].gameObject.SetActive(true);
         }
     }
+    
 }

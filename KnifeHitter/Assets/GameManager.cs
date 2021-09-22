@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     }
 
     [SerializeField] private GameObject _targetPrefab;
+    [SerializeField] private UIManager uiManager;
 
     private bool isGameEnded=false;
     private int currentHits;
@@ -43,11 +45,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         StartCoroutine(InstantiateTarget());
+        uiManager = FindObjectOfType<UIManager>();
     }
 
     private void Start()
     {
-        Time.timeScale = 1;
+        Debug.Log(Time.timeScale);
     }
 
     IEnumerator InstantiateTarget() 
@@ -57,7 +60,6 @@ public class GameManager : MonoBehaviour
         ScoreToWin = Random.Range(3, 9);
         EnemyKnivesCount = Random.Range(1, 3);
         NewTargetSpawned?.Invoke(ScoreToWin);
-
         Instantiate(_targetPrefab, new Vector3(0, 0.2f, 2.5f),Quaternion.Euler(180,0,0));
 
         currentHits = 0;
@@ -81,6 +83,8 @@ public class GameManager : MonoBehaviour
     IEnumerator StopSession() 
     {
         yield return new WaitForSeconds(1f);
-        Time.timeScale = 0;
+        uiManager.SwitchWindows(WindowType.LoseWindow);
     }
+
+    
 }
